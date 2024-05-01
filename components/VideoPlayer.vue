@@ -13,9 +13,8 @@
 <script setup>
 const props = defineProps({
   videoId: {
-    type: String,
-    requried: true,
+    type: Number,
+    required: true,
   },
-})
-
+});
 </script>
