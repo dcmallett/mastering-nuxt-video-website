@@ -25,15 +25,17 @@
       :videoId="lesson.videoId"
     />
     <p class="mb-5">{{ lesson.text }}</p>
-    <LessonCompleteButton 
-      :model-value="isLessonComplete"
-      @update:modelValue="toggleComplete"
-    />
+      <LessonCompleteButton 
+        :model-value="isLessonComplete"
+        @update:modelValue="toggleComplete"
+      />
   </div>
 </template>
 
 <script setup>
 import { useCourse } from '@/composables/useCourse';
+
+
 const course = useCourse();
 const route = useRoute();
 
@@ -56,9 +58,7 @@ useHead({
   title,
 });
 
-const progress = useState('progress', () => {
-  return [];
-})
+const progress = useLocalStorage('progress', []);
 
 const isLessonComplete = computed(() => {
   if (!progress.value[chapter.value.number - 1]) {
@@ -79,6 +79,7 @@ const isLessonComplete = computed(() => {
 
 const toggleComplete = () => {
   if (!progress.value[chapter.value.number - 1]) {
+    //if the chapter array does not exist we create it
     progress.value[chapter.value.number - 1] = [];
   }
 
