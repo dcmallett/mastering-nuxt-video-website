@@ -40,7 +40,7 @@ const course = useCourse();
 const route = useRoute();
 
 definePageMeta({
-  middleware: function ({ params }, from) {
+  middleware: [function ({ params }, from) {
     abortNavigation()
     const course = useCourse();
 
@@ -67,7 +67,10 @@ definePageMeta({
         })
       )
     }
-  }
+  },
+  //This is using the named middleware for auth
+  'auth'
+],
 })
 
 
