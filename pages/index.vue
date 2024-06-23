@@ -1,8 +1,12 @@
 <template>
-  <!-- ROOT PAGE -->
-  <course />
+  <NuxtLink
+    class="underline-font-medium"
+    :href="firstLesson.path"
+  >
+  Go to first lesson
+  </NuxtLink>
 </template>
 
-<script setup>
-import course from './course.vue';
+<script setup lang="ts">
+const firstLesson = useFirstLesson()
 </script>

@@ -135,9 +135,9 @@ We also answer the question: “Are there any cases when you wouldn’t want to 
           slug: '4-typing-component-events',
           number: 4,
           downloadUrl:
-            'https://vueschool.io/lessons/typing-component-events',
+              'https://vueschool.io/lessons/typing-component-events',
           sourceUrl:
-            'https://vueschool.io/lessons/typing-component-events',
+              'https://vueschool.io/lessons/typing-component-events',
           videoId: 686921522,
           text: `In this lesson, we learn how to type the payload of component events in Vue and TypeScript.`,
         },

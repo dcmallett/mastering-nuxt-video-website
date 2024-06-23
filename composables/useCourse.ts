@@ -23,7 +23,6 @@ type Course = {
   title: string;
   chapters: Chapter[]
 }
-
 export const useCourse = (): Course => {
   const chapters: Chapter[] = courseData.chapters.map(
     (chapter) => {

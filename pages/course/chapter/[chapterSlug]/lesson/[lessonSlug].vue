@@ -35,9 +35,41 @@
 <script setup>
 import { useCourse } from '@/composables/useCourse';
 
-
+//importing packages / modules
 const course = useCourse();
 const route = useRoute();
+
+definePageMeta({
+  middleware: function ({ params }, from) {
+    abortNavigation()
+    const course = useCourse();
+
+    const chapter = course.chapters.find(
+        (chapter) => chapter.slug === params.chapterSlug
+    );
+    if(!chapter) {
+      return createError({
+        statusCode: 404,
+        message: 'Chapter not found',
+      });
+    }
+
+    //this is a method
+    const lesson = chapter.lessons.find(
+        (lesson) => lesson.slug === params.lessonSlug
+    );
+
+    if (!lesson) {
+      return abortNavigation(
+        createError({
+          statusCode: 400,
+          message: 'Lesson not found'
+        })
+      )
+    }
+  }
+})
+
 
 const chapter = computed(() => {
   return course.chapters.find(
@@ -50,6 +82,7 @@ const lesson = computed(() => {
     (lesson) => lesson.slug === route.params.lessonSlug
   );
 });
+
 
 const title = computed(() => {
   return `${lesson.value.title} - ${course.title}`;
